@@ -12,6 +12,8 @@ django = "*"
 djangorestframework = "*"
 pillow = "*"
 django-environ = "*"
+boto3 = "*"
+django-storages = "*"
 
 [requires]
 python_version = "3.7"
