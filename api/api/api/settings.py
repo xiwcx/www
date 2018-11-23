@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    'storages',
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -106,13 +106,11 @@ STATIC_URL = "/static/"
 AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
 
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
+AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
-AWS_LOCATION = 'assets'
+AWS_LOCATION = "assets"
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-MEDIAFILES_LOCATION = 'media'
-DEFAULT_FILE_STORAGE = 'content.storage_backends.MediaStorage'
+MEDIAFILES_LOCATION = "media"
+DEFAULT_FILE_STORAGE = "content.storage_backends.MediaStorage"

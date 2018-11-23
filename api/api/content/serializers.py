@@ -5,6 +5,4 @@ from .models import Post
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        exclude = (
-            'published',
-        )
+        exclude = ("published",)

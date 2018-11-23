@@ -6,7 +6,7 @@ from .models import Image, Post
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {"fields": ["title", "body"]}),
-        ("Meta", {"fields": ["slug", "hero", "pub_date", "published"]}),
+        ("Meta", {"fields": ["slug", "pub_date", "published"]}),
     ]
     list_display = ("title", "pub_date", "published")
 
