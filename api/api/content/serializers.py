@@ -11,7 +11,8 @@ class ImageSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     hero = ImageSerializer()
     images = ImageSerializer(many=True)
+    body = serializers.CharField()
 
     class Meta:
         model = Post
-        exclude = ("published",)
+        exclude = ("markdown", "published",)
