@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Image, Post
+from .models import Image, Post, Work
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -8,11 +8,17 @@ class ImageSerializer(serializers.ModelSerializer):
         fields = ("upload", "caption")
 
 
-class PostSerializer(serializers.HyperlinkedModelSerializer):
+class BaseContentSerializer(serializers.HyperlinkedModelSerializer):
     hero = ImageSerializer()
     images = ImageSerializer(many=True)
     body = serializers.CharField()
 
+class PostSerializer(BaseContentSerializer):
     class Meta:
         model = Post
-        exclude = ("markdown", "published",)
+        exclude = ("markdown", "published_at",)
+
+class WorkSerializer(BaseContentSerializer):
+    class Meta:
+        model = Work
+        exclude = ("markdown", "published_at",)

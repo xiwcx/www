@@ -5,8 +5,8 @@ content views
 from rest_framework import viewsets
 from rest_framework import permissions
 
-from .models import Post
-from .serializers import PostSerializer
+from .models import Post, Work
+from .serializers import PostSerializer, WorkSerializer
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
@@ -14,3 +14,9 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+class WorkViewSet(viewsets.ReadOnlyModelViewSet):
+    """Post list create API view"""
+
+    queryset = Work.objects.all()
+    serializer_class = WorkSerializer
