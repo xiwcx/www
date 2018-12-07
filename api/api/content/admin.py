@@ -2,19 +2,26 @@ from django.contrib import admin
 
 from .models import Image, Post, Work
 
+
 class ImageInline(admin.StackedInline):
     model = Image
     extra = 1
-    fields = ('caption', 'upload',)
-    readonly_fields = ('preview',)
+    fields = ("caption", "upload")
+    readonly_fields = ("preview",)
 
 
 class BaseContentAdmin(admin.ModelAdmin):
-    readonly_fields = ('get_preview',)
+    readonly_fields = ("get_preview",)
 
     def get_preview(self, obj):
-        return obj.hero.preview()
-    get_preview.short_description = 'Hero Preview'
+        hero = obj.hero
+
+        if hero:
+            return obj.hero.preview()
+        return None
+
+    get_preview.short_description = "Hero Preview"
+
 
 class PostAdmin(BaseContentAdmin):
     fieldsets = [
@@ -24,6 +31,7 @@ class PostAdmin(BaseContentAdmin):
     list_display = ("title", "get_preview", "published_at", "status")
     inlines = [ImageInline]
 
+
 class WorkAdmin(BaseContentAdmin):
     fieldsets = [
         (None, {"fields": ["title", "markdown"]}),
@@ -31,6 +39,7 @@ class WorkAdmin(BaseContentAdmin):
     ]
     list_display = ("title", "get_preview", "published_at")
     inlines = [ImageInline]
+
 
 admin.site.register(Image)
 admin.site.register(Post, PostAdmin)

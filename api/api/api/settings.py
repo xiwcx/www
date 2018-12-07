@@ -1,5 +1,6 @@
 import os
 import environ
+import sys
 
 env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env()
@@ -115,3 +116,6 @@ AWS_LOCATION = "assets"
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 MEDIAFILES_LOCATION = "media"
 DEFAULT_FILE_STORAGE = "content.storage_backends.MediaStorage"
+
+
+REST_FRAMEWORK = {"TEST_REQUEST_DEFAULT_FORMAT": "json"}

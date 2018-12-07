@@ -17,6 +17,7 @@ boto3 = "*"
 django-storages = "*"
 mistune = "*"
 pygments = "*"
+nose = "*"
 
 [requires]
 python_version = "3.7"

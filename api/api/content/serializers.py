@@ -13,12 +13,14 @@ class BaseContentSerializer(serializers.HyperlinkedModelSerializer):
     images = ImageSerializer(many=True)
     body = serializers.CharField()
 
+
 class PostSerializer(BaseContentSerializer):
     class Meta:
         model = Post
-        exclude = ("markdown", "published_at",)
+        exclude = ("markdown", "status")
+
 
 class WorkSerializer(BaseContentSerializer):
     class Meta:
         model = Work
-        exclude = ("markdown", "published_at",)
+        exclude = ("markdown",)
