@@ -3,9 +3,11 @@ from .models import Image, Post, Work
 
 
 class ImageSerializer(serializers.ModelSerializer):
+    src = serializers.CharField(source='upload.url', read_only=True)
+
     class Meta:
         model = Image
-        fields = ("upload", "caption")
+        fields = ("src", "caption", "width", "height")
 
 
 class BaseContentSerializer(serializers.HyperlinkedModelSerializer):

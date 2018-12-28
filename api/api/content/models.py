@@ -2,12 +2,12 @@
 content models
 """
 
+import mistune
 from django.db import models
 from django.utils import timezone
-from .utils import HighlightRenderer
-import mistune
 from django.utils.safestring import mark_safe
 
+from .utils import HighlightRenderer
 
 renderer = HighlightRenderer()
 markdown = mistune.Markdown(renderer=renderer)
@@ -15,14 +15,16 @@ markdown = mistune.Markdown(renderer=renderer)
 # Image Types
 class Image(models.Model):
     caption = models.CharField(max_length=500)
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-    upload = models.ImageField()
+    height = models.IntegerField()
     related_post = models.ForeignKey(
         "Post", on_delete=models.CASCADE, blank=True, null=True, related_name="images"
     )
     related_work = models.ForeignKey(
         "Work", on_delete=models.CASCADE, blank=True, null=True, related_name="images"
     )
+    upload = models.ImageField(height_field="height", width_field="width")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    width = models.IntegerField()
 
     class Meta:
         db_table = "image"
@@ -42,8 +44,6 @@ class Image(models.Model):
 
 
 # Content Types
-
-
 class ContentBase(models.Model):
     """Base Content Abstract Model"""
 

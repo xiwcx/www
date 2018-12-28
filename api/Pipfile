@@ -5,19 +5,19 @@ verify_ssl = true
 
 [dev-packages]
 black = "*"
+nose = "*"
 pylint = "*"
 pylint-django = "*"
 
 [packages]
-django = "*"
-djangorestframework = "*"
-pillow = "*"
-django-environ = "*"
 boto3 = "*"
+django = "*"
+django-environ = "*"
+djangorestframework = "*"
 django-storages = "*"
 mistune = "*"
+pillow = "*"
 pygments = "*"
-nose = "*"
 
 [requires]
 python_version = "3.7"
